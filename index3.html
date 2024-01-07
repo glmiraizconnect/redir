@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>redirector</title>
+<script>
+const url = 'https://script.google.com/macros/s/AKfycbwivqaniKlduIKlvvjz75RZv_ZIQ5yMzMyGGn6uKQvDnkwuEGe41GYx0xgi7mwVFvQ/exec';
+const makelog = async () => {
+    fetch(url + location.search, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+    })
+        .then((res) => res.json());
+};
+const makeredirect = async () => {
+    fetch(url + location.search + '&action=r', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+    })
+        .then((res) => res.json()).then(ret => location.href = ret[0]);
+};
+window.onload = function () {
+    makelog();
+    makeredirect();
+};
+  </script>
+</head>
+<body>
+  しばらくお待ちください...
+</body>
+</html>
